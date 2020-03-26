@@ -4,3 +4,4 @@
 *.gitignore
 *.class
 .jar
+/.metadata/
