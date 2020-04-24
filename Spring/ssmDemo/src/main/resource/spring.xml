@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--开启注解模式，使用扫描-->
+    <context:component-scan base-package="com.ssm">
+        <!--排除不需要扫描的包Controller-->
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"></context:exclude-filter>
+    </context:component-scan>
+
+    <!--配置数据源-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/（databaseName）?useSSL=true&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="username" value="****"/>
+        <property name="password" value="****"/>
+    </bean>
+
+    <!--配置SqlSessionFactory-->
+    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--配置别名,方便在编写mapper.xml时直接使用类名-->
+        <!--<property name="typeAliasesPackage" value="com.ssm.pro"/>-->
+        <!--配置mapper.xml位置-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+
+    <!--配置映射器接口-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
+        <!--扫描dao接口-->
+        <property name="basePackage" value="com.ssm.dao"/>
+    </bean>
+
+    <!--配置事务管理-->
+    <!--事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--事务通知-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!--方法（spring扫描所到之处的方法，Controller已排除）权限配置配置-->
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="search*" read-only="true"/>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置Aop-->
+    <!-- 基于 Annotation 的声明式,使切面开启自动代理 -->
+    <aop:aspectj-autoproxy/>
+
+
+    <!--基于XML的声明式,将通知与切点关联起来-->
+    <aop:config>
+        <aop:pointcut id="txpc" expression="execution(* com.ssm.service.impl.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txpc"/>
+    </aop:config>
+
+
+</beans>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--扫描Controller相关注解-->
+    <context:component-scan base-package="com.ssm">
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"></context:include-filter>
+    </context:component-scan>
+
+    <!-- 配置视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 前缀 -->
+        <property name="prefix" value="/WEB-INF/pages/"></property>
+        <!-- 后缀 -->
+        <property name="suffix" value=".html"></property>
+    </bean>
+
+    <!--配置化视图解析器-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--配置前缀-->
+        <property name="prefix" value="/WEB-INF/pages/"></property>
+        <!--配置后缀-->
+        <property name="suffix" value=".html"></property>
+    </bean>
+
+    <!--开启sprignmvc注解的支持-->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+    <!--放行静态资源html-->
+    <mvc:default-servlet-handler/>
+
+</beans>
