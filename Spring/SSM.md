@@ -226,7 +226,6 @@ https://blog.csdn.net/liyuanyue2017/article/details/96507642
   
     
   
-    
 
 #### SpringMVC
 
@@ -327,14 +326,6 @@ https://blog.csdn.net/liyuanyue2017/article/details/96507642
       <context:component-scan base-package="com.ssm">
           <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:include-filter>
       </context:component-scan>
-  
-      <!-- 配置视图解析器 -->
-      <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-          <!-- 前缀 -->
-          <property name="prefix" value="/WEB-INF/pages/"></property>
-          <!-- 后缀 -->
-          <property name="suffix" value=".html"></property>
-      </bean>
   
       <!--配置化视图解析器-->
       <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

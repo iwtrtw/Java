@@ -11,8 +11,9 @@ public class demo1 {
     @Test
     public void testSpring() {
         ApplicationContext appContext = new ClassPathXmlApplicationContext("spring.xml");
+        System.out.println("Before");
         UserService userService = (UserService) appContext.getBean("userServieImpl");
+        System.out.println("After");
         userService.findUserInfo();
-
     }
 }

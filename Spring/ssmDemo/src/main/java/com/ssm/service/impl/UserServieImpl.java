@@ -8,6 +8,11 @@ import java.util.List;
 
 @Service
 public class UserServieImpl implements UserService {
+    public UserServieImpl(){
+        System.out.println("无参构造");
+    }
+
+
     @Override
     public List<User> findUserInfo() {
         System.out.println("查询用户信息");

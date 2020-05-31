@@ -1,0 +1,9 @@
+npm使用国内淘宝镜像   https://blog.csdn.net/bird3014/article/details/93538860
+Node.js安装及环境配置之Windows篇   https://www.jianshu.com/p/03a76b2e7e00
+
+
+chcp 65001  就是换成UTF-8代码页
+
+chcp 936 可以换回默认的GBK
+
+chcp 437 是美国英语  

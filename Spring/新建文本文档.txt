@@ -1,0 +1,22 @@
+spring源码编译 https://www.cnblogs.com/lusaisai/p/11686352.html
+idea 导入spring 源码 踩坑记总结整理 https://blog.csdn.net/qq_38196479/article/details/104071904
+spring源码下载安装，导入idea以及编译报错问题详细解决过程 https://blog.csdn.net/backstreetBoy1/article/details/103901613
+搭建自己的SpringBoot源码调试环境	https://juejin.im/post/5e51d18af265da576b566273
+记一次spring源码构建（idea）全过程 https://blog.csdn.net/weixin_41325595/article/details/105610797
+IDEA 编译运行 Spring Boot 2.0 源码 https://my.oschina.net/dabird/blog/1942112
+Spring Boot + Vue.js 实现前后端分离（附源码）https://www.ershicimi.com/p/1d34737736f4cfef15dd852a6cd13dc8
+ 
+跟武哥一起学习 Sping Boot 课程源码https://gitee.com/eson15/springboot_study
+https://blog.csdn.net/biaolianlao0449/article/details/104456602?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-4&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-4
+
+如何搭建自己的SpringBoot源码调试环境？--SpringBoot源码（一）
+
+在IDEA搭建Spring和SpringBoot源码阅读和代码调试跟踪的环境https://blog.csdn.net/dg357442101/article/details/82771460?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5
+
+
+<properties>
+		<revision>2.2.0.RELEASE</revision>
+		<main.basedir>${basedir}</main.basedir>
+		<disable.checks>true</disable.checks>
+	</properties>
+mvn clean install -DskipTests -Pfast
