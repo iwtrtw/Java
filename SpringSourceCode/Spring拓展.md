@@ -73,8 +73,6 @@ public interface ImportSelector {
 
 + **DeferredImportSelector**：DeferredImportSelector用在处理@Conditional相关的导入时特别有用；Spring Bootn的自动配置功能就是通过DeferredImportSelector接口的实现类EnableAutoConfigurationImportSelector做到的。
 
-
-
 ##### ImportBeanDefinitionRegistrar
 
 实现bean的动态注入：可以支持我们自己写的代码封装成BeanDefinition对象;实现此接口的类会回调postProcessBeanDefinitionRegistry方法，注册到spring容器中。把bean注入到spring容器
