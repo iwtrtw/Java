@@ -74,17 +74,17 @@
 
 8. 基本数据类型
 
-| 数据类型 | 长度 | 默认值  |
-| -------- | ---- | ------- |
-| byte     | 1    | 0       |
-| short    | 2    | 0       |
-| int      | 4    | 0       |
-| long     | 8    | 0L      |
-| float    | 4    | 0.0f    |
-| double   | 8    | 0.0d    |
-| char     | 2    | 'u0000' |
-| String   |      | null    |
-| boolean  | 1    | false   |
+| 数据类型 | 长度(字节) | 默认值  |
+| -------- | ---------- | ------- |
+| byte     | 1          | 0       |
+| short    | 2          | 0       |
+| int      | 4          | 0       |
+| long     | 8          | 0L      |
+| float    | 4          | 0.0f    |
+| double   | 8          | 0.0d    |
+| char     | 2          | 'u0000' |
+| String   |            | null    |
+| boolean  | 1          | false   |
 
 + 自动类型转换：byte,short,char—> int —> long—> float —> double 
 
