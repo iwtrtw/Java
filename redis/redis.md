@@ -61,13 +61,19 @@ AP - 满足可用性，分区容忍性的系统，通常可能对一致性要求
 + redis支持数据的备份，即master-slave模式的数据备份
 
   ​		redis属于单进程模型，通过对epoll函数的进一步增强来实现的，redis的实际处理速度完全依靠主进程的执行效率（epoll是linux下多路复用IO接口select/poll的增强版本，是linux内核为处理大批量文件描述符而作了改进的。它能显著提高程序在大量并发连接中只有少量活跃的情况下的系统CPU利用率）
+  
+  ![redis简介](redis简介.png)
+
+![应用场景](应用场景.png)
+
+​		redis是单线程+多路IO复用，多路复用是指用一个线程来检查多个文件描述符（socket）的就绪状态，比如调用select和poll函数，传入多个文件描述符，如果有一个文件描述符就绪，则返回，否则阻塞直到超时。得到就绪状态后进行真正的操作可以在同一个线程里执行，也可以启动线程执行（比如使用线程池）
 
 ##### 五大数据类型
 
 + **string** ：redis最基本的类型，一个key对应一个value，一个value最多可以是512M；string类型是二进制安全的，指的的是string可以包含任何数据(比如jpg图片或者序列化的对象)
 + **hash**：一个键值对集合，是一个string类型的field和value的映射表，特别适合用于存储对象（hash类似java中的Map<String,Object>）
-+ **list**：字符串列表，元素按照插入顺序排序（底层实现是一个链表）
-+ **set**：string类型的无序集合，不允许重复的元素（通过hashtable实现）
++ **list**：字符串列表，元素按照插入顺序排序（底层实现是一个双向链表）
++ **set**：string类型的无序集合，不允许重复的元素（通过hashtable实现，添加、删除、查找的复杂度都是O(1)）
 + **zset**：string类型的有序集合，不允许重复的元素，但每一个元素都会关联一个double类型的分数(sorce可重复)，通过该分数可以为集合中的成员进行从小到大的排序（通过hashtable实现）
 
 ###### 基本命令
@@ -519,6 +525,12 @@ redis.conf 配置项说明如下：
 
 
 
+### zset实现文章访问量排行榜
 
+zadd  article_set  100 java  999 python 88888 c++ 7777 c  6666 php
+
+从大到小排序：zrevrange article_set 0 -1
+
+ 获取某个范围：zrevrangebyscore article_set  1000000  555
 
 参考博客 https://codekiller.top/2020/03/30/redis2/
