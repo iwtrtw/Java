@@ -194,6 +194,36 @@ a=a+b与a=b+a：对于基本数据类型来说没有区别，但对于String类�
 
 ![二维数组](二维数组.png)
 
-
-
 ![二维数组内存](二维数组内存.png)
+
++ 数组反转
+
+```java
+String arr = new String[]{"A","B","C","D","E"}
+for(int i=0;i<arr.length/2;i++){
+    String temp = arr[i]
+    arr[i] = arr[arr.lenght-i-1]
+    arr[arr.lenght-i-1] = temp
+}
+
+
+for(int i=0,j=arr.length-1;i<j;i++,j--){
+    String temp = arr[i]
+    arr[i] = arr[j]
+    arr[j] = temp
+}
+```
+
++ Arrays
+
+| boolean equals(int[] a,int[] b)   | 判断两个数组是否相等       | 顺序必须一样才一样 |
+| --------------------------------- | -------------------------- | ------------------ |
+| String to String(int[] a)         | 输出数组信息               |                    |
+| void fill(int[] a,int val)        | 将制定值填充到数组之中     |                    |
+| void sort(int[] a)                | 对数组进行排序             |                    |
+| int binarySearch(int[] a,int key) | 对排序后的数据进行二分查找 |                    |
+
+
+
+#### 面向对象
+
